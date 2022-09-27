@@ -1,2 +1,9 @@
 # ignore all media files
 *.mp4
+*.mkv
+
+# ignore logs
+*.log
+
+# ignore video file lists
+listaArchivos*.txt

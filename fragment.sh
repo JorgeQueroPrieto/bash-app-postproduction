@@ -2,8 +2,6 @@
 
 rutaPristine=camera/
 rutaFragmented=fragmented/
-rutaCodified=codified/
-rutaGrouped=grouped/
 rutaLog=log/fragmented.log
 
 #Si no se provee de ningún argumento finalizará la ejecución
@@ -35,11 +33,14 @@ tiempoInicialRecorte=0
 i=0
 while [[ $i -lt $numFragmentos ]]; do 
 	if [ $i -eq $(($numFragmentos-1)) ]; then
-		ffmpeg -i $rutaPristine$1 -ss $tiempoInicialRecorte -to $duracionPristine -c:v copy -c:a copy "$rutaFragmented$i.$extension" >> $rutaLog;	
+		ffmpeg -i $rutaPristine$1 -ss $tiempoInicialRecorte -to $duracionPristine -c:v copy -c:a copy "$rutaFragmented$i.$extension" >>$rutaLog 2>&1	
 	else
-		ffmpeg -i $rutaPristine$1 -ss $tiempoInicialRecorte -t 30 -c:v copy -c:a copy "$rutaFragmented$i.$extension" >> $rutaLog;
+		ffmpeg -i $rutaPristine$1 -ss $tiempoInicialRecorte -t 30 -c:v copy -c:a copy "$rutaFragmented$i.$extension" >>$rutaLog 2>&1
 	fi
 	(( i += 1 ))
 	(( tiempoInicialRecorte += 30 ))
 done
 echo "Fragmentación completa."
+
+#Creación de la lista de archivos fragmentados
+ls $rutaFragmented >> listaArchivosFragmented.txt;
