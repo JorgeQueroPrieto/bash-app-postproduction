@@ -21,4 +21,5 @@ fi
 #Codificamos los fragmentos de video en paralelo
 parallel --ungroup --jobs $numeroNucleos ./$procesoCodificacion :::: $listaFragmentados >>$rutaLog 2>&1
 echo "Proceso de codificación completado. Creando lista de archivos codificados."
-ls $rutaCodified >> listaArchivosCodified.txt;
+for f in $rutaCodified*; do echo "file '$f'" >> listaArchivosCodified.txt; done
+sort --version-sort --field-separator=\n -o listaArchivosCodified.txt listaArchivosCodified.txt
