@@ -1,27 +1,24 @@
 # bash-app-postproduction
 Bash app for fragment, code and group video.
+This program uses gnu parallel tool to reduce execution time of video codec and trancodification, by distributing the workflow between the differents threads of the system.
 
-Video pristine.mov is a footage video from the cinestudy.org web, with © Copyright  Sonnyboo™ All Rights Reserved ®. 
+Dependences:
 
-Video reference:
-    Starring Brandy Seymour
-    Cinematography by Mike Tavares
-    Produced and Directed by Peter John Ross
-    Grip – TJ Cooley
-    shot on location downtown Columbus, Ohio
-    Please use the Hashtag #Cinestudy on your edit when you post online
-    Cranes provided by
+- ffmpeg version 4.4.2-0ubuntu0.22.04.1
+- bc
+- gnu parallel
 
-    Sean McHenry/Deep Blue Edit
-    Post Production Facility – Sonnyboo Productions
-    footage courtesy of www.Sonnyboo.com
+Before executing:
 
-    #cinestudy
+1st) Copy the pristine video to the camera directory
+2nd) Modify the main.sh "pristine" variable with the pristine video name plus extension
+3rd) Modify the process.sh "codec", "extensionIn", "extensionOut" variables with your own preferences
+4th) Modify the codify.sh "numeroNucleos" variable, depending of the total number of threads of your system
+5th) Execute the main.sh file
 
-    https://www.facebook.com/cinestudy/
+*Each time you execute main.sh, all txt lists, logs, fragments, codified fragments and final video are removed for a clean execution. 
 
-    © Copyright  Sonnyboo™ All Rights Reserved ®
+Notes:
 
-    CINESTUDY/FRAMELINES is brought to you in part by
-
-    Greater Columbus Arts Council
+- The extensions and codecs supported are the same which ffmpeg supports.
+- This program was made on a Ubuntu 22.04 LTS system.
