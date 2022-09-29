@@ -18,5 +18,6 @@ do
 done
 
 #Agrupamos los fragmentos del video
+echo "Concatenando los fragmentos codificados ..."
 ffmpeg -f concat -i $listaCodificados -c copy "grouped/output.$extension" >>$rutaLog 2>&1
-echo "Proceso de agrupación completado. El archivo " $1 " ha sido almacenado en " $rutaGrouped
+echo "Proceso de concatenación completado. El archivo final ha sido almacenado en " $rutaGrouped"output."$extension

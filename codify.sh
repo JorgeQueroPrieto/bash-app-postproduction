@@ -1,5 +1,6 @@
 #! /bin/bash
 
+#Indicar el número total de subprocesos con los que cuenta la instancia donde se ejecutará el programa
 numeroNucleos=4
 listaFragmentados=listaArchivosFragmented.txt
 procesoCodificacion=process.sh
@@ -19,7 +20,10 @@ if [[ $numeroNucleos > $(nproc --all) ]]; then
 fi
 
 #Codificamos los fragmentos de video en paralelo
+echo "Codificando los fragmentos en paralelo..."
 parallel --ungroup --jobs $numeroNucleos ./$procesoCodificacion :::: $listaFragmentados >>$rutaLog 2>&1
-echo "Proceso de codificación completado. Creando lista de archivos codificados."
+echo "Proceso de codificación completado."
+echo "Creando lista de archivos codificados..."
 for f in $rutaCodified*; do echo "file '$f'" >> listaArchivosCodified.txt; done
 sort --version-sort --field-separator=\n -o listaArchivosCodified.txt listaArchivosCodified.txt
+echo "Lista de archivos codificados creada."
