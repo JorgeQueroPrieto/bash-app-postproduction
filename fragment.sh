@@ -33,10 +33,10 @@ tiempoInicialRecorte=$(bc <<< "0")
 i=0
 while [[ $(echo "$tiempoInicialRecorte < $duracionPristine" | bc -l) -eq 1 ]]; do 
 	if [[ $(echo "$duracionPristine - $tiempoInicialRecorte < 30" | bc -l) -eq 1  ]]; then
-		ffmpeg -i "$rutaPristine$1" -ss "$tiempoInicialRecorte" -to "$duracionPristine" -c:v copy -c:a copy "$rutaFragmented$i.$extension" >>"$rutaLog" 2>&1
+		ffmpeg -ss "$tiempoInicialRecorte" -i "$rutaPristine$1" -c:v copy -c:a copy -to "$duracionPristine" "$rutaFragmented$i.$extension" >>"$rutaLog" 2>&1
 		tiempoInicialRecorte=$duracionPristine
 	else
-		ffmpeg -i "$rutaPristine$1" -ss "$tiempoInicialRecorte" -t 30 -c:v copy -c:a copy "$rutaFragmented$i.$extension" >>"$rutaLog" 2>&1
+		ffmpeg -ss "$tiempoInicialRecorte" -i "$rutaPristine$1" -c:v copy -c:a copy -t 30 "$rutaFragmented$i.$extension" >>"$rutaLog" 2>&1
 		tiempoInicialRecorte=$(bc <<< "scale=6; $tiempoInicialRecorte + $(ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 "$rutaFragmented$i.$extension")") 
 		(( i+=1 ))
 	fi
