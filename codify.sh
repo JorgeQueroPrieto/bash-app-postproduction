@@ -1,7 +1,7 @@
 #! /bin/bash
 
 #Indicar el número total de subprocesos con los que cuenta la instancia donde se ejecutará el programa
-numeroNucleos=4
+numeroNucleos=2
 listaFragmentados=listaArchivosFragmented.txt
 procesoCodificacion=process.sh
 rutaCodified=codified/
