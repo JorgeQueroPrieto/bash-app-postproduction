@@ -4,7 +4,7 @@ This program uses gnu parallel tool to reduce execution time of video codec and 
 
 Dependences:
 
-- ffmpeg version 4.4.2-0ubuntu0.22.04.1
+- ffmpeg
 - bc
 - gnu parallel
 
@@ -22,3 +22,4 @@ Notes:
 
 - The extensions and codecs supported are the same which ffmpeg supports.
 - This program was made on a Ubuntu 22.04 LTS system.
+- install.sh bash script was made for auto install dependencies on amazon linux 2 ami
